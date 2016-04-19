@@ -1,4 +1,4 @@
-var master = (function(){
+var Master = (function(){
 
   /**
    * TODO::::
@@ -10,12 +10,12 @@ var master = (function(){
    * Call these in using node
    */
 
-   
+
 
 
    return {
       test: function(){
-
+        
       }
    };
 })();
