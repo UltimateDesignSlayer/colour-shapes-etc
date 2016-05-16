@@ -1,6 +1,12 @@
 [
   {
+    "id":1,
     "name":"red",
     "hex":"#ff0000"
+  },
+  {
+    "id":2,
+    "name":"grey",
+    "hex":"#cccccc"
   }
 ]

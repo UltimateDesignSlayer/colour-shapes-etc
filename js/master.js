@@ -14,8 +14,10 @@ var Master = (function(){
 
 
    return {
-      test: function(){
-        
+      init: function(){
+        console.log('Master init fired');
       }
    };
 })();
+
+Master.init();
