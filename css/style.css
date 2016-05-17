@@ -22,3 +22,9 @@ h5 {
 
 h6 {
   font-size: 2em; }
+
+.colour-container ul.colour-list {
+  list-style: none;
+  padding: 0; }
+  .colour-container ul.colour-list .colour-block {
+    display: block; }

@@ -27,37 +27,30 @@ var ColourComponent = (function(){
       this.getColoursJson();
     },
     render: function(){
+
       return(
         <div>
           <h3>COLOURS GO HERE!!</h3>
           <p>{this.props.urlGetColours}</p>
-          <ColourList coloursArr={this.state.coloursArr} testData='Oi' />
+          <div className="row">
+            <ul className="col-xs-12 colour-list">       
+              {this.state.coloursArr.map(function(colour){
+                return (
+                  <Colour key={colour.id} colourName={colour.name} colourHex={colour.hex} />
+                );
+              })}
+            </ul>
+          </div>
         </div>
-      )
-    }
-  });
-
-  var ColourList = React.createClass({
-    render: function(){
-      var ColourNode = this.props.coloursArr.map(function(colour){
-        return(
-          <Colour colourName={colour.name} colourHex={colour.hex} key={colour.id} />
-        );
-      });
-      console.log(this.props.coloursArr[0], this.props.coloursArr[1]);
-
-      return(
-        <ul className="colour-list">
-          <li>{ColourNode}</li>
-        </ul>
       )
     }
   });
 
   var Colour = React.createClass({
     render: function(){
+      //Inline styles need to be an object.
       return(
-        <li>{this.props.colourName}</li>
+        <li className="col-xs-3 col-sm-2 col-md-1 colour-block" style={ {backgroundColor: this.props.colourHex} }>{this.props.colourName} {this.props.colourHex}</li>
       )
     }
   });
