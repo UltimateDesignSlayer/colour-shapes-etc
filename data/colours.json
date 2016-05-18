@@ -6,7 +6,67 @@
   },
   {
     "id":2,
-    "name":"grey",
+    "name":"blue",
+    "hex":"#00a9ff"
+  },
+  {
+    "id":3,
+    "name":"green",
+    "hex":"#19ff00"
+  },
+  {
+    "id":4,
+    "name":"yellow",
+    "hex":"#faff00"
+  },
+  {
+    "id":5,
+    "name":"pink",
+    "hex":"#ffaded"
+  },
+  {
+    "id":6,
+    "name":"orange",
+    "hex":"#ff9000"
+  },
+  {
+    "id":7,
+    "name":"turquoise",
+    "hex":"#40e0d0"
+  },
+  {
+    "id":8,
+    "name":"white",
+    "hex":"#ffffff"
+  },
+  {
+    "id":9,
+    "name":"black",
+    "hex":"#000000"
+  },
+  {
+    "id":10,
+    "name":"purple",
+    "hex":"#800080"
+  },
+  {
+    "id":11,
+    "name":"sky blue",
+    "hex":"#87CEEB"
+  },
+  {
+    "id":12,
+    "name":"cream",
+    "hex":"#ffffa2"
+  },
+  {
+    "id":13,
+    "name":"dark grey",
+    "hex":"#666666"
+  },
+  {
+    "id":14,
+    "name":"light grey",
     "hex":"#cccccc"
   }
 ]

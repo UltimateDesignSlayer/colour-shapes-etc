@@ -8,8 +8,6 @@ var ColourComponent = (function(){
           type: 'GET',
           cache: false,
           success: function(data) {
-            console.log('Get colours JSON', data);
-            console.log(typeof data);
             this.setState({coloursArr: data});
           }.bind(this),
           error: function(xhr, status, err) {
@@ -19,7 +17,11 @@ var ColourComponent = (function(){
     },
     getInitialState: function(){
       //this runs when component is first created
-      return {coloursArr: []};
+      return {coloursArr: [], currentColourHex: '', currentColourName: ''};
+    },
+    colourSelected: function(colourHex, colourName){
+      console.log(colourHex);
+      this.setState({currentColourHex: colourHex, currentColourName: colourName});
     },
     componentDidMount: function(){
       //This fires when the component runs
@@ -27,16 +29,16 @@ var ColourComponent = (function(){
       this.getColoursJson();
     },
     render: function(){
-
+      var that = this;
       return(
         <div>
-          <h3>COLOURS GO HERE!!</h3>
-          <p>{this.props.urlGetColours}</p>
+          <h3>COLOURS!!</h3>
+          <ColourDisplayer colourHex={this.state.currentColourHex} colourName={this.state.currentColourName} />
           <div className="row">
-            <ul className="col-xs-12 colour-list">       
+            <ul className="col-xs-12 colour-list">
               {this.state.coloursArr.map(function(colour){
                 return (
-                  <Colour key={colour.id} colourName={colour.name} colourHex={colour.hex} />
+                  <Colour key={colour.id} onColourSelect={that.colourSelected} colourName={colour.name} colourHex={colour.hex} />
                 );
               })}
             </ul>
@@ -46,11 +48,23 @@ var ColourComponent = (function(){
     }
   });
 
+  var ColourDisplayer = React.createClass({
+    render: function(){
+      return(
+        <div className="col-xs-12 colour-display" style={ {backgroundColor:this.props.colourHex} }>{this.props.colourName}</div>
+      )
+    }
+  });
+
   var Colour = React.createClass({
+    selectColour: function(event){
+      console.info(this.props.colourName + ' :: ' + this.props.colourHex);
+      this.props.onColourSelect(this.props.colourHex, this.props.colourName); //this prop is a function in ColoursApp
+    },
     render: function(){
       //Inline styles need to be an object.
       return(
-        <li className="col-xs-3 col-sm-2 col-md-1 colour-block" style={ {backgroundColor: this.props.colourHex} }>{this.props.colourName} {this.props.colourHex}</li>
+        <li className="col-xs-3 col-sm-2 col-md-1 colour-block" onClick={this.selectColour} style={ {backgroundColor: this.props.colourHex} }>{this.props.colourName} {this.props.colourHex}</li>
       )
     }
   });
