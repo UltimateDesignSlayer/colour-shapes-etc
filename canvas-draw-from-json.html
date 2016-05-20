@@ -1,0 +1,50 @@
+<html>
+	<head>
+		<title>Canvas</title>
+
+		<style>
+			#canvasContainer h3{
+				text-transform: capitalize;
+			}
+		</style>
+	</head>
+
+	<body>
+
+		<div id="canvasContainer">
+			<h3></h3>
+			<p class="desc"></p>
+		</div>
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.3/jquery.min.js"></script>
+		<script>
+				var picData; //this will be a React state.
+
+				$.ajax({
+						url:'https://api.myjson.com/bins/2n95c',
+						type:'GET',
+						async: false, //this will not be here in the react app
+						success: function(response){
+							console.log(response);
+
+							picData = response;
+						}
+				});
+
+
+				for(i=0; i<picData.length; i++){
+					var picture = picData[i];
+
+					//build picture content
+					$('#canvasContainer h3').text(picture.name);
+					$('#canvasContainer .desc').text(picture.desc);
+
+					//Level 2
+					for(j=0; j<picture.pictureElements.length; j++){
+						var pictureElement = picture.pictureElements[j];
+						console.log("level 2 element :: " + picture.pictureElements[j].name);
+					}
+				}
+		</script>
+	</body>
+</html>
