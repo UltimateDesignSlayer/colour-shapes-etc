@@ -38,7 +38,7 @@ var ColourApp = (function(){
         <div>
           <h3>COLOURS!!</h3>
           <ColourDisplayer currentColour={this.state.currentColour} />
-          <Picture />
+          
           <div className="row">
             <ul className="col-xs-12 colour-list">
               {this.state.coloursArr.map(function(colour){

@@ -2,7 +2,7 @@
   {
     "id": 1,
     "name": "beach",
-    "desc": "Colour in a sunny day at the beach."
+    "desc": "Colour in a sunny day at the beach.",
     "pictureElements": [
       {
         "id":1,
@@ -10,11 +10,19 @@
         "contextItems": [
           {
             "contextPropName": "moveTo",
-            "contextPropVal": "10,10"
+            "contextPropVal": [10,10]
           },
           {
             "contextPropName": "lineTo",
-            "contextPropVal": "50,10"
+            "contextPropVal": [50,10]
+          },
+          {
+            "contextPropName": "strokeStyle",
+            "contextPropVal": "#ff0000"
+          },
+          {
+            "contextPropName": "stroke",
+            "contextPropVal": []
           }
         ]
       },
@@ -24,11 +32,19 @@
         "contextItems": [
           {
             "contextPropName": "moveTo",
-            "contextPropVal": "10,10"
+            "contextPropVal": [10,10]
           },
           {
             "contextPropName": "lineTo",
-            "contextPropVal": "10,50" 
+            "contextPropVal": [10,50]
+          },
+          {
+            "contextPropName": "strokeStyle",
+            "contextPropVal": "#ff00ff"
+          },
+          {
+            "contextPropName": "stroke",
+            "contextPropVal": []
           }
         ]
       }

@@ -14,14 +14,18 @@
 		<div id="canvasContainer">
 			<h3></h3>
 			<p class="desc"></p>
+			<canvas id="canvas" width="300px" height="300px"></canvas>
 		</div>
 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.3/jquery.min.js"></script>
 		<script>
 				var picData; //this will be a React state.
 
+				var canvas = document.getElementById('canvas');
+				var ctx = canvas.getContext('2d');
+
 				$.ajax({
-						url:'https://api.myjson.com/bins/2n95c',
+						url:'https://api.myjson.com/bins/2xew0',
 						type:'GET',
 						async: false, //this will not be here in the react app
 						success: function(response){
@@ -42,7 +46,40 @@
 					//Level 2
 					for(j=0; j<picture.pictureElements.length; j++){
 						var pictureElement = picture.pictureElements[j];
-						console.log("level 2 element :: " + picture.pictureElements[j].name);
+						console.log("level 2 element :: " + pictureElement.name);
+
+						ctx.beginPath();
+						for (k=0; k < pictureElement.contextItems.length; k++){
+							var contextItem = pictureElement.contextItems[k];
+							console.log(contextItem.contextPropName);
+							console.log(contextItem.contextPropVal);
+
+							/**
+							 * :: Different types of possible values ::
+							 * Coords need 2 params passed. So we set as array in JSON and
+							 * check if value is array before setting context.
+							 *
+							 * If something like a stroke colour, we need to set as a property value.
+							 * e.g. ctx[contextItem.contextPropName] = "#001111";
+							 *
+							 * If object method, it's a function and needs to be executed like so:
+							 * e.g. ctx[contextItem.contextPropName](50, 65);
+							 **/
+
+							//Check if object is method or property
+							if (typeof ctx[contextItem.contextPropName] === "function"){
+								//if method, execute function
+								ctx[contextItem.contextPropName].apply(ctx, contextItem.contextPropVal);
+								//value of param must be an array.
+							}
+							else{
+								ctx[contextItem.contextPropName] = contextItem.contextPropVal;
+							}
+
+
+
+						}
+						ctx.closePath();
 					}
 				}
 		</script>
