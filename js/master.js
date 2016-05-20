@@ -7,17 +7,21 @@ var Master = (function(){
    * Call in colour component + the component of the section your in. This is
    * cos we're going to use colours in them.
    *
-   * Call these in using node
    */
 
+  var bindEvents = function(){
+    $(document).ready(function(){
+      $('.activity-selection').on('click', 'a', function(){
+        $('.home-container').hide();
+      });
+    });
+  };
 
-
-
-   return {
-      init: function(){
-        console.log('Master init fired');
-      }
-   };
+  return {
+    init: function(){
+      bindEvents();
+    }
+  };
 })();
 
 Master.init();

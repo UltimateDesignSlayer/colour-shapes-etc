@@ -1,0 +1,37 @@
+[
+  {
+    "id": 1,
+    "name": "beach",
+    "desc": "Colour in a sunny day at the beach."
+    "pictureElements": [
+      {
+        "id":1,
+        "name": "sea",
+        "contextItems": [
+          {
+            "contextPropName": "moveTo",
+            "contextPropVal": "10,10"
+          },
+          {
+            "contextPropName": "lineTo",
+            "contextPropVal": "50,10"
+          }
+        ]
+      },
+      {
+        "id":2,
+        "name": "sand",
+        "contextItems": [
+          {
+            "contextPropName": "moveTo",
+            "contextPropVal": "10,10"
+          },
+          {
+            "contextPropName": "lineTo",
+            "contextPropVal": "10,50" 
+          }
+        ]
+      }
+    ]
+  }
+]
