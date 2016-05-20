@@ -38,7 +38,7 @@ var ColourApp = (function(){
         <div>
           <h3>COLOURS!!</h3>
           <ColourDisplayer currentColour={this.state.currentColour} />
-          
+
           <div className="row">
             <ul className="col-xs-12 colour-list">
               {this.state.coloursArr.map(function(colour){
@@ -92,22 +92,73 @@ var ColourApp = (function(){
 
   var Picture = React.createClass({
     getPictureCoords: function(){
-      var picCanvas = document.getElementById("colourPicture");
-      var context = picCanvas.getContext('2d');
-      context.lineWidth = 2;
+      var canvas = document.getElementById('canvas');
+      var ctx = canvas.getContext('2d');
 
-      context.strokeStyle = '#000000';
-      context.save();
-      context.translate(439, 81);
-      context.scale(1, 1);
-      context.beginPath();
-      context.arc(0, 0, 59, 0, 6.283185307179586, false);
-      context.stroke();
-      context.closePath();
-      context.restore();
+      $.ajax({
+          url:'/data/pictures.json',
+          type:'GET',
+          dataType:'json',
+          async: false, //this will not be here in the react app
+          success: function(response){
+            console.log(response);
+            this.setState({picData: response});
+          }
+      });
+    },
+    drawPicture: function(){
+      var canvas = document.getElementById('colourPicture');
+      var ctx = canvas.getContext('2d');
 
-      context.strokeStyle = '#000000';
-      context.strokeRect(1, 345, 598, 154);
+      for(i=0; i<picData.length; i++){
+        var picture = picData[i];
+
+        //build picture content
+        $('#canvasContainer h3').text(picture.name);
+        $('#canvasContainer .desc').text(picture.desc);
+
+        //Level 2
+        for(j=0; j<picture.pictureElements.length; j++){
+          var pictureElement = picture.pictureElements[j];
+          console.log("level 2 element :: " + pictureElement.name);
+
+          ctx.beginPath();
+          for (k=0; k < pictureElement.contextItems.length; k++){
+            var contextItem = pictureElement.contextItems[k];
+            console.log(contextItem.contextPropName);
+            console.log(contextItem.contextPropVal);
+
+            /**
+             * :: Different types of possible values ::
+             * Coords need 2 params passed. So we set as array in JSON and
+             * check if value is array before setting context.
+             *
+             * If something like a stroke colour, we need to set as a property value.
+             * e.g. ctx[contextItem.contextPropName] = "#001111";
+             *
+             * If object method, it's a function and needs to be executed like so:
+             * e.g. ctx[contextItem.contextPropName](50, 65);
+             **/
+
+            //Check if object is method or property
+            if (typeof ctx[contextItem.contextPropName] === "function"){
+              //if method, execute function
+              ctx[contextItem.contextPropName].apply(ctx, contextItem.contextPropVal);
+              //value of param must be an array.
+            }
+            else{
+              ctx[contextItem.contextPropName] = contextItem.contextPropVal;
+            }
+
+
+
+          }
+          ctx.closePath();
+        }
+      }
+    }
+    getInitialState: function(){
+      return {picData:[]};
     },
     componentDidMount: function(){
       this.getPictureCoords();

@@ -25,8 +25,9 @@
 				var ctx = canvas.getContext('2d');
 
 				$.ajax({
-						url:'https://api.myjson.com/bins/2xew0',
+						url:'/data/pictures.json',
 						type:'GET',
+						dataType:'json',
 						async: false, //this will not be here in the react app
 						success: function(response){
 							console.log(response);
