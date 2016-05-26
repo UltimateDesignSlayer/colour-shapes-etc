@@ -9,6 +9,8 @@ var Master = (function(){
    *
    */
 
+   
+
   var bindEvents = function(){
     $(document).ready(function(){
       $('.activity-selection').on('click', 'a', function(){

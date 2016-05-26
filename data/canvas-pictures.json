@@ -1,0 +1,86 @@
+[
+  {
+    "id": 1,
+    "name": "beach",
+    "desc": "Colour in a sunny day at the beach.",
+    "pictureElements": [
+      {
+        "id":1,
+        "name": "sea",
+        "contextItems": [
+          {
+            "contextPropName": "moveTo",
+            "contextPropVal": [10,10]
+          },
+          {
+            "contextPropName": "lineTo",
+            "contextPropVal": [50,10]
+          },
+          {
+            "contextPropName": "lineTo",
+            "contextPropVal": [50,50]
+          },
+          {
+            "contextPropName": "lineTo",
+            "contextPropVal": [10,50]
+          },
+          {
+            "contextPropName": "lineTo",
+            "contextPropVal": [10,10]
+          },
+          {
+            "contextPropName": "strokeStyle",
+            "contextPropVal": "#ff0000"
+          },
+          {
+            "contextPropName": "stroke",
+            "contextPropVal": []
+          }
+        ]
+      },
+      {
+        "id":2,
+        "name": "sand",
+        "contextItems": [
+          {
+            "contextPropName": "moveTo",
+            "contextPropVal": [100,100]
+          },
+          {
+            "contextPropName": "lineTo",
+            "contextPropVal": [150,100]
+          },
+
+          {
+            "contextPropName": "lineTo",
+            "contextPropVal": [170,190]
+          },
+          {
+            "contextPropName": "lineTo",
+            "contextPropVal": [150,150]
+          },
+          {
+            "contextPropName": "lineTo",
+            "contextPropVal": [150,100]
+          },
+          {
+            "contextPropName": "strokeStyle",
+            "contextPropVal": "#ff00ff"
+          },
+          {
+            "contextPropName": "stroke",
+            "contextPropVal": []
+          },
+          {
+            "contextPropName": "fillStyle",
+            "contextPropVal": "#3a72ff"
+          },
+          {
+            "contextPropName": "fill",
+            "contextPropVal": []
+          }
+        ]
+      }
+    ]
+  }
+]
