@@ -23,16 +23,16 @@ h5 {
 h6 {
   font-size: 2em; }
 
-.colour-container .colour-display {
+.app-container .colour-display {
   border: 2px solid #000;
   height: 300px;
   margin-bottom: 15px; }
-.colour-container #colourPicture {
+.app-container #colourPicture {
   width: 100%;
   height: 500px; }
-.colour-container ul.colour-list {
+.app-container ul.colour-list {
   list-style: none; }
-  .colour-container ul.colour-list .colour-block {
+  .app-container ul.colour-list .colour-block {
     display: block;
     border: 1px solid #000000;
     height: 60px;
