@@ -101,28 +101,28 @@ var ColourApp = (function(){
       this.getPictureData();
     },
     getPictureData: function(){
+      var that = this;
       $.ajax({
           url:'/data/pictures.json',
           type:'GET',
           dataType:'json',
           success: function(response){
             console.log(response);
-            this.setState({picData: response});
-          }.bind(this)
+            that.setState({picData: response});
+          }
       });
     },
     render: function(){
       return(
         <div className="container">
           <div className="row">
-            <svg height="350" width="100%">
-
+            <svg height="350" width="300">
+              {this.state.picData.map(function(pic){
+                return (
+                  <PictureShape type={pic.type} name={pic.name} attr={pic.attr} key={pic.id} />
+                );
+              })}
             </svg>
-            {this.state.picData.map(function(pic){
-              return (
-                <PictureShape type={pic.type} name={pic.name} attr={pic.attr} key={pic.id} />
-              );
-            })}
           </div>
         </div>
       )
@@ -131,9 +131,10 @@ var ColourApp = (function(){
 
   var PictureShape = React.createClass({
     render: function(){
-      console.log(this.props.attr);
+      var element = React.createElement(this.props.type, this.props.attr);
+      //putting React.createElement(this.props.type, this.props.attr) straight into the return doesn't work?? But this does.
       return(
-        React.createElement(this.props.type, this.props.attr);
+        element
       )
     }
   });
