@@ -37,7 +37,7 @@ var ColourApp = (function(){
       return(
         <div>
           <h3>COLOURS!!</h3>
-          <Picture />
+          <Picture currentColour={this.state.currentColour} />
           <ColourDisplayer currentColour={this.state.currentColour} />
 
           <div className="row">
@@ -113,23 +113,34 @@ var ColourApp = (function(){
       });
     },
     render: function(){
+      var that = this;
       return(
-        <div className="container">
           <div className="row">
-            <svg height="350" width="300">
-              {this.state.picData.map(function(pic){
-                return (
-                  <PictureShape type={pic.type} name={pic.name} attr={pic.attr} key={pic.id} />
-                );
-              })}
-            </svg>
+            <div className="col-xs-12">
+              <svg height="350" width="100%">
+                {this.state.picData.map(function(pic){
+                  return (
+                    <PictureShape currentColour={that.props.currentColour} type={pic.type} name={pic.name} attr={pic.attr} key={pic.id} />
+                  );
+                })}
+              </svg>
+            </div>
           </div>
-        </div>
       )
     }
   });
 
   var PictureShape = React.createClass({
+    bindEvents: function(){
+      var that = this;
+      $('svg').on('click', '*', function(){
+        console.log(that.props.currentColour);
+        $(this).attr('fill', that.props.currentColour.hex);
+      });
+    },
+    componentDidMount: function(){
+      this.bindEvents();
+    },
     render: function(){
       var element = React.createElement(this.props.type, this.props.attr);
       //putting React.createElement(this.props.type, this.props.attr) straight into the return doesn't work?? But this does.
