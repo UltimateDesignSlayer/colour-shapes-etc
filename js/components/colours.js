@@ -37,6 +37,7 @@ var ColourApp = (function(){
       return(
         <div>
           <h3>COLOURS!!</h3>
+          <Picture />
           <ColourDisplayer currentColour={this.state.currentColour} />
 
           <div className="row">
@@ -86,6 +87,53 @@ var ColourApp = (function(){
       //Inline styles need to be an object.
       return(
         <li className="col-xs-3 col-sm-2 col-md-1 colour-block" onClick={this.selectColour} style={ colourPaletteStyles }>{this.props.colourName} {this.props.colourHex}</li>
+      )
+    }
+  });
+
+  var Picture = React.createClass({
+    getInitialState: function(){
+      // this runs when component is first created
+      // define states/props here
+      return {picData: []};
+    },
+    componentDidMount: function(){
+      this.getPictureData();
+    },
+    getPictureData: function(){
+      $.ajax({
+          url:'/data/pictures.json',
+          type:'GET',
+          dataType:'json',
+          success: function(response){
+            console.log(response);
+            this.setState({picData: response});
+          }.bind(this)
+      });
+    },
+    render: function(){
+      return(
+        <div className="container">
+          <div className="row">
+            <svg height="350" width="100%">
+
+            </svg>
+            {this.state.picData.map(function(pic){
+              return (
+                <PictureShape type={pic.type} name={pic.name} attr={pic.attr} key={pic.id} />
+              );
+            })}
+          </div>
+        </div>
+      )
+    }
+  });
+
+  var PictureShape = React.createClass({
+    render: function(){
+      console.log(this.props.attr);
+      return(
+        React.createElement(this.props.type, this.props.attr);
       )
     }
   });
