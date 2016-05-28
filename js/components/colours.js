@@ -66,7 +66,7 @@ var ColourApp = (function(){
       }
 
       return(
-        <div className="col-xs-12 colour-display" style={ colourDisplayStyle }>{this.props.currentColour.name}</div>
+        <div className="col-xs-12 colour-display" className="hide" style={ colourDisplayStyle }>{this.props.currentColour.name}</div>
       )
     }
   });
@@ -119,8 +119,10 @@ var ColourApp = (function(){
             <div className="col-xs-12">
               <svg height="350" width="100%">
                 {this.state.picData.map(function(pic){
+                  var positionObj = {x: pic.xpos, y: pic.ypos};
+
                   return (
-                    <PictureShape currentColour={that.props.currentColour} type={pic.type} name={pic.name} attr={pic.attr} key={pic.id} />
+                    <PictureShape currentColour={that.props.currentColour} type={pic.type} svgPosition={positionObj} name={pic.name} attr={pic.attr} key={pic.id} />
                   );
                 })}
               </svg>
@@ -133,7 +135,7 @@ var ColourApp = (function(){
   var PictureShape = React.createClass({
     bindEvents: function(){
       var that = this;
-      $('svg').on('click', '*', function(){
+      $('svg').on('click', 'svg > *', function(){
         console.log(that.props.currentColour);
         $(this).attr('fill', that.props.currentColour.hex);
       });
@@ -145,7 +147,9 @@ var ColourApp = (function(){
       var element = React.createElement(this.props.type, this.props.attr);
       //putting React.createElement(this.props.type, this.props.attr) straight into the return doesn't work?? But this does.
       return(
-        element
+        <svg x={this.props.svgPosition.x} y={this.props.svgPosition.y}>
+          {element}
+        </svg>
       )
     }
   });
