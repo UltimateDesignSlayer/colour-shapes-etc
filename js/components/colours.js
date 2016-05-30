@@ -117,12 +117,10 @@ var ColourApp = (function(){
       return(
           <div className="row">
             <div className="col-xs-12">
-              <svg height="350" width="100%">
+              <svg id="colouringPicture">
                 {this.state.picData.map(function(pic){
-                  var positionObj = {x: pic.xpos, y: pic.ypos};
-
                   return (
-                    <PictureShape currentColour={that.props.currentColour} type={pic.type} svgPosition={positionObj} name={pic.name} attr={pic.attr} key={pic.id} />
+                    <SvgElement currentColour={that.props.currentColour} svgShapes={pic.svgShapes} name={pic.name} attr={pic.gAttr} key={pic.id} />
                   );
                 })}
               </svg>
@@ -132,24 +130,29 @@ var ColourApp = (function(){
     }
   });
 
-  var PictureShape = React.createClass({
+  var SvgElement = React.createClass({
     bindEvents: function(){
       var that = this;
-      $('svg').on('click', 'svg > *', function(){
+      $('#colouringPicture').on('click', 'g', function(){
         console.log(that.props.currentColour);
-        $(this).attr('fill', that.props.currentColour.hex);
+        $("*", this).attr('fill', that.props.currentColour.hex);
       });
     },
     componentDidMount: function(){
       this.bindEvents();
     },
     render: function(){
-      var element = React.createElement(this.props.type, this.props.attr);
-      //putting React.createElement(this.props.type, this.props.attr) straight into the return doesn't work?? But this does.
+      // for each item in this svgShapes array, add an element to g
+      var g = React.createElement("g", this.props.attr,
+        this.props.svgShapes.map(function(shape){
+          var element = React.createElement(shape.type, shape.attr);
+          return(
+            element
+          )
+        })
+      );
       return(
-        <svg x={this.props.svgPosition.x} y={this.props.svgPosition.y}>
-          {element}
-        </svg>
+        g
       )
     }
   });

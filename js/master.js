@@ -9,7 +9,8 @@ var Master = (function(){
    *
    */
 
-   
+    
+
 
   var bindEvents = function(){
     $(document).ready(function(){
