@@ -118,11 +118,11 @@ var ColourApp = (function(){
           <div className="row">
             <div className="col-xs-12">
               <svg id="colouringPicture">
-                {this.state.picData.map(function(pic){
-                  return (
-                    <SvgElement currentColour={that.props.currentColour} svgShapes={pic.svgShapes} name={pic.name} attr={pic.gAttr} key={pic.id} />
-                  );
-                })}
+                  {this.state.picData.map(function(pic){
+                    return (
+                      <SvgElement currentColour={that.props.currentColour} svgShapes={pic.svgShapes} name={pic.name} attr={pic.gAttr} key={pic.id} />
+                    );
+                  })}
               </svg>
             </div>
           </div>
