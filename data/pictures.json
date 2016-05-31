@@ -27,7 +27,7 @@
       }
     ],
     "gAttr": {
-      "transform": "translate(0,100)"
+      "transform": "translate(0,250)"
     }
   },
   {
@@ -45,7 +45,10 @@
           "fill": "yellow"
         }
       }
-    ]
+    ],
+    "gAttr": {
+      "transform": "translate(450,20)"
+    }
   },
   {
     "id":3,
@@ -62,6 +65,9 @@
           "className": "cloud"
         }
       }
-    ]
+    ],
+    "gAttr": {
+      "transform": "translate(350,20)"
+    }
   }
 ]
