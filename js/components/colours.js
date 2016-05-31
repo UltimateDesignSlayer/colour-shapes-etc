@@ -66,7 +66,7 @@ var ColourApp = (function(){
       }
 
       return(
-        <div className="col-xs-12 colour-display" className="hide" style={ colourDisplayStyle }>{this.props.currentColour.name}</div>
+        <div className="col-xs-12 colour-display" style={ colourDisplayStyle }>{this.props.currentColour.name}</div>
       )
     }
   });
@@ -86,7 +86,7 @@ var ColourApp = (function(){
 
       //Inline styles need to be an object.
       return(
-        <li className="col-xs-3 col-sm-2 col-md-1 colour-block" onClick={this.selectColour} style={ colourPaletteStyles }>{this.props.colourName} {this.props.colourHex}</li>
+        <li className="col-xs-3 col-sm-2 col-md-1 colour-block" onClick={this.selectColour} style={ colourPaletteStyles }>{this.props.colourName}</li>
       )
     }
   });
