@@ -32,7 +32,8 @@ h6 {
 .app-container #colouringPicture {
   height: 350px;
   width: 100%;
-  position: relative; }
+  position: relative;
+  border: 2px solid #000; }
 .app-container ul.colour-list {
   list-style: none; }
   .app-container ul.colour-list .colour-block {

@@ -17,8 +17,14 @@ var ColourApp = (function(){
     },
     getInitialState: function(){
       // this runs when component is first created
-      // define states/props here
-      return {coloursArr: [], currentColour: {}};
+      // Default selected colour is white
+      return {
+        coloursArr: [],
+        currentColour: {
+          hex: "#fff",
+          name: "White"
+        }
+      };
     },
     colourSelected: function(colourHex, colourName){
       var currentColourObj = {
