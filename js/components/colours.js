@@ -122,14 +122,14 @@ var ColourApp = (function(){
       var that = this;
       return(
           <div className="row">
-            <div className="col-xs-12">
-              <svg id="colouringPicture">
-                  {this.state.picData.map(function(pic){
-                    return (
-                      <SvgElement currentColour={that.props.currentColour} svgShapes={pic.svgShapes} name={pic.name} attr={pic.gAttr} key={pic.id} />
-                    );
-                  })}
-              </svg>
+            <div className="col-xs-12" id="colouringPicture">
+              {this.state.picData.map(function(pic){
+                return (
+                  <div>
+                    <SvgElement currentColour={that.props.currentColour} svgShapes={pic.svgShapes} name={pic.name} attr={pic.divAttr} key={pic.id} />
+                  </div>
+                );
+              })}
             </div>
           </div>
       )
@@ -149,7 +149,7 @@ var ColourApp = (function(){
     },
     render: function(){
       // for each item in this svgShapes array, add an element to g
-      var g = React.createElement("g", this.props.attr,
+      var svgPicture = React.createElement("svg", this.props.attr,
         this.props.svgShapes.map(function(shape){
           var element = React.createElement(shape.type, shape.attr);
           return(
@@ -158,7 +158,7 @@ var ColourApp = (function(){
         })
       );
       return(
-        g
+        svgPicture
       )
     }
   });

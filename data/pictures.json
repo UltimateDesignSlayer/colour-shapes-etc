@@ -26,8 +26,8 @@
         }
       }
     ],
-    "gAttr": {
-      "transform": "translate(0,250)"
+    "divAttr": {
+      "style": "position:absolute; bottom:0; left:0; width:100%;"
     }
   },
   {
@@ -46,8 +46,8 @@
         }
       }
     ],
-    "gAttr": {
-      "transform": "translate(450,20)"
+    "divAttr": {
+      "style": "position:absolute; top:20px; right:20px;"
     }
   },
   {
@@ -66,7 +66,7 @@
         }
       }
     ],
-    "gAttr": {
+    "divAttr": {
       "transform": "translate(350,20)"
     }
   }
